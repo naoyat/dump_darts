@@ -32,10 +32,12 @@ $ dump_darts <darts-file>
 
 dump_darts はフリーソフトウェアです．LGPL(Lesser GNU General Public License) または BSD ライセンスに従って本ソフトウェアを使用,再配布することができます. 詳細は COPYING, LGPL, BSD各ファイルを参照して下さい．
 
-
 ## 開発動機
 
-Dartsを[DAWG](http://dawg.readthedocs.org/en/latest/)で置き換えたかったのだけれど、mkdartsした元の単語ファイルを失くしてしまったのですよ
+Dartsを[DAWG](http://dawg.readthedocs.org/en/latest/)で置き換えたかったのだけれど、mkdartsした元の単語ファイルを失くしてしまったのですよ…
+
+これを書いたおかげでdouble-arrayでTrieがどう実装されているのか自分なりに理解できたのが不幸中の幸い。
+
 
 ## author
 
