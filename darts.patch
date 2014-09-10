@@ -1,0 +1,50 @@
+--- orig/darts.h	2014-09-10 17:02:13.000000000 +0900
++++ dest/darts.h	2014-09-10 17:04:13.000000000 +0900
+@@ -331,6 +331,47 @@
+       return -1;  // found, but no value
+     }
+ 
++    void dump_all_keys(bool show_pos=false) {
++      std::vector<size_t> rev(size_);
++      std::vector<size_t> goals;
++
++      for (size_t i=0; i<size_; ++i) {
++        array_type_ base = array_[i].base;
++
++        if (base == 0) {
++          continue;
++        } else if (base < 0) {
++          goals.push_back(i);
++          continue;
++        }
++
++        if (array_[i].check == 0) continue;
++
++        rev[base] = i;
++      }
++
++      for (size_t i=0, sz=goals.size(); i<sz; ++i) {
++        array_type_ goal = array_[goals[i]].base;  // goal < 0
++        array_u_type_ check = array_[goals[i]].check;
++        size_t here = rev[check];
++
++        std::vector<unsigned char> way;
++
++        while (true) {
++          array_u_type_ check = array_[here].check;
++          if (check == 0) break;  // root
++
++          way.push_back(here - check - 1);
++          here = rev[check];
++        }
++
++        if (show_pos) printf("%d\t", -goal-1);
++
++        for (int i=way.size()-1; i>=0; --i) putchar(way[i]);
++        printf("\n");
++      }
++    }
++
+   private:
+     struct node_t {
+       array_u_type_ code;
